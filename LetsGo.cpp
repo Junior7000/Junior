@@ -3,102 +3,118 @@
    Department: Computer
    */
 
-
-
-
-
 #include <iostream>
 #include <string>
 using namespace std;
+class Student
+{
+
+private:
+    string name, Class, materials[8] = {"Python: ", "C++: ", "Kotlin: ", "Java: ", "HTML: ", "Dart: ", "SQL: ", "PHP: "};
+    char department, degree;
+    int usernameID, average;
+    int material, var = 0;
+
+public:
+    void setName()
+    {
+        cout << "Enter the Studan's Name: ";
+        cin >> name;
+    }
+
+    void setUsernameID()
+    {
+        cout << "Enter the Studan's UserNameID: ";
+        cin >> usernameID;
+    }
+    void SetDepartment()
+    {
+        cout << "Enter the Studan's Department: ";
+        cin >> department;
+
+        if (department == 'A')
+        {
+            Class = "CONTROL";
+        }
+        else if (department == 'T')
+        {
+            Class = "Communication";
+        }
+
+        else if (department == 'C')
+        {
+            Class = "Computer";
+        }
+        else
+        {
+            Class = "Unknown";
+        }
+    }
+    void SetMaterialDegree()
+    {
+        cout << "Enter the degree of 8 materials: " << endl;
+        for (int x = 0; x < 8; x++)
+        {
+            cout << materials[x];
+            cin >> material;
+            var += material;
+        }
+        average = var / 8;
+
+        switch (average)
+        {
+        case 0 ... 19:
+            degree = 'F';
+            break;
+        case 20 ... 39:
+            degree = 'D';
+            break;
+        case 40 ... 59:
+            degree = 'C';
+            break;
+        case 60 ... 79:
+            degree = 'B';
+            break;
+        case 80 ... 100:
+            degree = 'A';
+            break;
+        default:
+            cout << "Out Of Range!" << endl;
+        }
+    }
+
+    void print()
+    {
+
+        cout << "\n\n\n~~~~~~~~~~~~~~~~~~THE RESULTS~~~~~~~~~~~~~~~~~~~\n\n\n"
+             << endl;
+
+        cout << "Studant Name: " << name << endl;
+        cout << "USERNAME_ID: " << usernameID << endl;
+        cout << "Department: " << Class << endl;
+        cout << "Average: " << average << endl;
+        cout << "Degree: " << degree << endl;
+    }
+};
+
+char Exit;
+
 int main()
 {
-    string name[10],Class[10];
-    char Exit, degree[10], department[10];
-    int usernameID[10], average[10], var=0;
-    int material[8];
-    string materials[8] = {"Python: ","C++: ","Kotlin: ","Java: ","HTML: ","Dart: ","SQL: ","PHP: "};
 
     do
     {
-        
-        for (int i = 0; i < 10; i++)
-        {
-            cout << "Enter the student's name: ";
-            cin >> name[i];
-            cout << "Enter the student's usrenameID: ";
-            cin >> usernameID[i];
-            cout << "Enter the student's department A or T or C: ";
-            cin >> department[i];
-            if (department[i] == 'A')
-            {
-                Class[i]="CONTROL";
-            }
-            if (department[i] == 'T')
-            {
-                Class[i]= "Communication";
-            }
-            if (department[i] == 'C')
-            {
-                Class[i]="Computer" ;
-            }
-            cout << "Enter the degree of 8 materials: " <<endl;
-            for (int x = 0; x < 8; x++)
-            {
-                cout<<materials[x];
-                cin>>material[x];
-            }
+        Student student;
 
-            for (int g = 0; g < 8 ; g++)
-            {
-                var += material[g];
-            }
+        student.setName();
+        student.setUsernameID();
+        student.SetDepartment();
+        student.SetMaterialDegree();
+        student.print();
 
-            for (int j= 0; j < 10; j++)
-            {
-                average[j] = var/8;
-            }
-
-            switch (average[i])
-            {
-            case 0 ... 59:
-                degree[i] = 'F';
-                break;
-            case 60 ... 69:
-                degree[i] = 'D';
-                break;
-            case 70 ... 79:
-                degree[i] = 'C';
-                break;
-            case 80 ... 89:
-                degree[i] = 'B';
-                break;
-            case 90 ... 100:
-                degree[i] = 'A';
-                break;
-            default:
-                cout << "Out Of Range!" << endl;
-            }
-        }
-        
-    
-           
-      
-       
-        
-
-        cout << "~~~~~~~~~~~~~~~~~~THE RESULTS~~~~~~~~~~~~~~~~~~~" << endl;
-
-        for (int i = 1; i <= 11 ; i++)
-        {
-        cout << "Studant:"<<i<<" Name:"<< name[i]<<" "<<" USERNAME_ID: "<<usernameID[i]<<" "<<"Department: "<< Class[i]<<" "<<" Average: "<<average[i]<<" "<<"Degree: "<<degree[i]<<endl;
-        }
-        
-
-
-        cout << "Do you want Exit [Y or N] : ";
+        cout << "Do you want to Exit [Y or N] : ";
         cin >> Exit;
     } while (Exit != 'y');
-    
-    
+
     return 0;
 }
